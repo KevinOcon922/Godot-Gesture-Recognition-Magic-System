@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BoostSpell" format=3 uid="uid://c0j82tqlswvrs"]
+
+[ext_resource type="Script" uid="uid://cyvxjgh1cerq" path="res://spells/boost_spell.gd" id="1_ef468"]
+
+[resource]
+script = ExtResource("1_ef468")
+spell_name = "boost"
+is_castable = false
+is_buff = true
+metadata/_custom_type_script = "uid://cyvxjgh1cerq"

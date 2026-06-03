@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="JumpSpell" format=3 uid="uid://b1ldq7hdnnshg"]
+
+[ext_resource type="Script" uid="uid://cgu5g2nmsbruy" path="res://spells/jump_spell.gd" id="1_t5g48"]
+
+[resource]
+script = ExtResource("1_t5g48")
+spell_name = "jump"
+max_cooldown = 3.0
+metadata/_custom_type_script = "uid://cgu5g2nmsbruy"

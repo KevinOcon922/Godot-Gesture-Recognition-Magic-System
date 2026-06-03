@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bha3u22y3fow2"]
+
+[ext_resource type="Script" uid="uid://idbfvby7fy8l" path="res://scripts/player.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cccdcu7htvh66" path="res://scripts/gesture_recognizer.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c1j5pbpychdq6" path="res://scripts/spell_handler.gd" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(1199, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig7tw"]
+radius = 22.0
+height = 44.0
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.4
+glow_strength = 1.6
+glow_hdr_threshold = 0.6
+
+[node name="main" type="Node2D" unique_id=598786810]
+
+[node name="LevelTest" type="Node2D" parent="." unique_id=635197273]
+
+[node name="Area2D" type="StaticBody2D" parent="LevelTest" unique_id=427054925]
+position = Vector2(1, 174)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelTest/Area2D" unique_id=1138585120]
+position = Vector2(11.5, 0)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=839364093]
+scale = Vector2(2, 2)
+script = ExtResource("1_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=907759859]
+shape = SubResource("CapsuleShape2D_ig7tw")
+
+[node name="ColorRect" type="ColorRect" parent="Player" unique_id=1346572439]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.16078432, 0.6627451, 0.74509805, 1)
+
+[node name="GestureRecognizer" type="Node2D" parent="." unique_id=832435724]
+script = ExtResource("1_ig7tw")
+
+[node name="SpellHandler" type="Node2D" parent="." unique_id=1420696295]
+script = ExtResource("3_h2yge")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1821494912]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=921638543]
+environment = SubResource("Environment_ig7tw")
