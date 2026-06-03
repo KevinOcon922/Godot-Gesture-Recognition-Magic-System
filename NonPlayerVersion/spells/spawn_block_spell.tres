@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SpawnBlockSpell" format=3 uid="uid://bvhvjc6ge1qm7"]
+
+[ext_resource type="Script" uid="uid://bowc445w1qobg" path="res://NonPlayerVersion/spells/spawn_block_spell.gd" id="1_ejqhv"]
+
+[resource]
+script = ExtResource("1_ejqhv")
+metadata/_custom_type_script = "uid://osn83dduoa7m"

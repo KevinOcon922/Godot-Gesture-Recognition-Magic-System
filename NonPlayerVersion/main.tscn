@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b6eee24ebm73e"]
+
+[ext_resource type="Script" uid="uid://cccdcu7htvh66" path="res://scripts/gesture_recognizer.gd" id="1_or7un"]
+[ext_resource type="Script" uid="uid://c1j5pbpychdq6" path="res://scripts/spell_handler.gd" id="2_jfara"]
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.4
+glow_strength = 1.6
+glow_hdr_threshold = 0.6
+
+[node name="main" type="Node2D" unique_id=598786810]
+
+[node name="GestureRecognizer" type="Node2D" parent="." unique_id=832435724]
+script = ExtResource("1_or7un")
+
+[node name="SpellHandler" type="Node2D" parent="." unique_id=1420696295]
+script = ExtResource("2_jfara")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1821494912]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=921638543]
+environment = SubResource("Environment_ig7tw")
