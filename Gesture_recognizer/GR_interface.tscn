@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cl11vosuumq7w"]
+
+[ext_resource type="Script" uid="uid://cx0v4yxyrqhil" path="res://addons/Gesture_recognizer/GR_interface.gd" id="1_l07jc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bag8f"]
+bg_color = Color(0.255536, 0.296829, 0.346404, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cb2n6"]
+bg_color = Color(0.0862745, 0.105882, 0.129412, 0.498039)
+
+[node name="Panel" type="Panel" unique_id=1517530969]
+offset_right = 408.0
+offset_bottom = 512.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bag8f")
+script = ExtResource("1_l07jc")
+
+[node name="DrawingArea" type="Panel" parent="." unique_id=2057666693]
+layout_mode = 0
+offset_right = 408.0
+offset_bottom = 296.0
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cb2n6")
+
+[node name="Button_AddExistingType" type="Button" parent="." unique_id=826707177]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 320.0
+offset_right = 256.0
+offset_bottom = 360.0
+text = "Add to existing type"
+
+[node name="List_TypeName" type="OptionButton" parent="." unique_id=212748779]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 320.0
+offset_right = 384.0
+offset_bottom = 360.0
+selected = 0
+item_count = 5
+popup/item_0/text = "COOLSHAPE"
+popup/item_0/id = 0
+popup/item_1/text = "H"
+popup/item_1/id = 1
+popup/item_2/text = "STAR"
+popup/item_2/id = 2
+popup/item_3/text = "TRIANGLE"
+popup/item_3/id = 3
+popup/item_4/text = "Z"
+popup/item_4/id = 4
+
+[node name="Button_AddNewType" type="Button" parent="." unique_id=479785726]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 384.0
+offset_right = 256.0
+offset_bottom = 424.0
+text = "Add to new type"
+
+[node name="Text_NewName" type="LineEdit" parent="." unique_id=1903903190]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 384.0
+offset_right = 384.0
+offset_bottom = 424.0
+
+[node name="Button_ViewAll" type="Button" parent="." unique_id=481165983]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 448.0
+offset_right = 384.0
+offset_bottom = 488.0
+text = "View all symbols"
+
+[node name="ResultLabel" type="Label" parent="." unique_id=1326134604]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 264.0
+offset_right = 400.0
+offset_bottom = 296.0
+
+[node name="Button_Test" type="Button" parent="." unique_id=538004549]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 8.0
+offset_right = 489.0
+offset_bottom = 39.0
+text = "test"
+
+[node name="Button_Score" type="Button" parent="." unique_id=285580502]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 48.0
+offset_right = 490.0
+offset_bottom = 80.0
+text = "score"
