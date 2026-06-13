@@ -162,7 +162,9 @@ func Recognize(original_points: Array, min_score_lim: float) -> Dictionary:
 	
 	# Compare the input gesture LUT against all templates LUTs
 	for template in _gestures_templates:
-		var score = AccuracyScore(gesture_LUT, template["LUT"], template["name"])
+		#var score = AccuracyScore(gesture_LUT, template["LUT"], template["name"])
+		var score = similarity(gesture_LUT, template["LUT"])
+		print(template["name"] + ": " + str(score))
 		if score > best_score:
 			best_score = score
 			best_match = template["name"]
@@ -258,3 +260,19 @@ func GetGestureNames() -> Array:
 		if gest["name"] not in gesture_names:
 			gesture_names.append(gest["name"])
 	return gesture_names
+
+func similarity(LUT1, LUT2):
+	var tp = 0
+	var fp = 0
+	var fn = 0
+
+	for x in range(LUTSize):
+		for y in range(LUTSize):
+			var A = LUT1[x][y]
+			var B = LUT2[x][y]
+
+			tp += A & B
+			fp += (1 - A) & B
+			fn += A & (1 - B)
+			
+	return float(tp) / max(tp + fp + fn, 1)

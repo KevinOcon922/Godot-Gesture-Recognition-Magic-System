@@ -36,17 +36,15 @@ offset_top = 320.0
 offset_right = 384.0
 offset_bottom = 360.0
 selected = 0
-item_count = 5
-popup/item_0/text = "COOLSHAPE"
+item_count = 4
+popup/item_0/text = "boost"
 popup/item_0/id = 0
-popup/item_1/text = "H"
+popup/item_1/text = "jump"
 popup/item_1/id = 1
-popup/item_2/text = "STAR"
+popup/item_2/text = "shrink"
 popup/item_2/id = 2
-popup/item_3/text = "TRIANGLE"
+popup/item_3/text = "shrink_toggle"
 popup/item_3/id = 3
-popup/item_4/text = "Z"
-popup/item_4/id = 4
 
 [node name="Button_AddNewType" type="Button" parent="." unique_id=479785726]
 layout_mode = 0
