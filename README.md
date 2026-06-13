@@ -20,3 +20,20 @@ carry a 'caster' attribute, which is assigned to the player by default. This is 
 If you would like your game to not have a player character, open the NonPlayerVersion folder and drag the spells and scripts folders into your project. Then, open main.tscn to open a blank project. The main difference between this and the player version is that the spell signal carries a main_node parameter for accessing the root node of the tree. This is useful for games without a main character, for example a spell crafting game. In this example scene, drawing a circle will activate the spawn_block spell, which spawns a gray rectangle at the mouse's position at the moment of casting.
 
 ## Creating New Spells
+
+A major goal of this project was to streamline the creation of spells. Several examples of spells can be seen in game as well to aid this explanation. To create a new spell, create a new script and have it extend SpellResource. That script must then implement the cast function. The arguments of the cast function depend on whether the player or playerless version is being used. In the player version, the cas function takes in as parameters a CharacterBody2D (representing the player), a Vector2 (representing the location), a float (representing spell power), a float (representing duration boost), and a string (which can be used to implement any aditional spell modifiers). In the playerless version, the cast function is identicial except that the CharacterBody2D is replaced with a Node2D representing the root node of the scene.  
+
+If you want the spell to have a cooldown, all operations inside the cast function must be inside of an if statement checking the SpellResource variable ready_to_cast. The cooldown functionality is already implemented, and the duration of the cooldown can be edited once a resource is created for the spell.  
+
+Next, create a new resource that uses the newly created script. With the current structure of this project, this resource must be placed inside the spells folder, although this can easily be changed with edits to the SpellManager script. If you want this spell to be immediately accessible, add it into SpellManager as a dictionary entry such that the key is the spell name and the value is the preloaded spell resource.  
+
+Then, use the plugin UI panel to draw what you want the spell to look like. Press add spell and enter the exact name used in the dictionary entry. Multiple templates can be added under the same spell to increase accuracy.
+
+## Other Spell Features
+
+Many properties of a spell can be directly changed in the editor panel associated with that spell's resource, such as whether it is a castable spell or a multi-cast buff, or the spell's cooldown.
+
+Another technique that can be used is demonstrated in the ShrinkToggle spell. The cast function of a spell can create a temporary node and attach it to an object (in this case the player). This is useful for implementing spells with durations because you simply need to attach a timer to the new node and implement a revert function when the timer expires.
+
+### Making Multi Symbol Spells
+To make a spell require multiple gestures, make only the final gesture castable in the resource and all the other ones not castable. Then, inside of the spell dictionary, instead make the value associated with the preliminary syumbols a new dictionary. So you will have a chain of dictionaries that eventually ends in a castable spell.
