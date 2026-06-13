@@ -1,7 +1,7 @@
 # Godot-Gesture-Recognition-Magic-System
 An extension of Minananami's Gesture Recognizer plugin that sets up a scene with an easily usable multi-glyph magic system. This repository contains two options: One with a player character and one without.  
 
-Draw spells directly to the screen and have them recognized using a point cloud gesture recognition algorithm. Pressing left click starts drawing a spell and pressing right click attempts to cast it.
+Draw spells directly to the screen and have them recognized using a template based gesture recognition algorithm. Pressing left click starts drawing a spell and pressing right click attempts to cast it.
 
 The original repository can be found here: https://github.com/Minananami/Multistroke-Gesture-Recognizer-Plugin-for-Godot-Engine
 
