@@ -7,7 +7,7 @@ extends Node2D
 var drawing_points = []
 var is_drawing = false
 var recognizer = GestureRecognizer.new()
-var min_score_limitation = 0.72
+var min_score_limitation = 0.35
 var current_gesture_id = 0 
 var stroke_timer = Timer.new()
 var recognize_timer = Timer.new()
