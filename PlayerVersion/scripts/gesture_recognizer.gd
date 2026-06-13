@@ -4,10 +4,14 @@ extends Node2D
 @onready var gestures_path: String = "res://addons/Gesture_recognizer/resources/gestures/"
 @onready var test_path: String = "res://addons/Gesture_recognizer/resources/testers/"
 
+@onready var cast_effect = preload("res://other_scenes/cast_effect.tscn")
+var stroke_lines: Array[Line2D] = []
+var out_lines: Array[Line2D] = []
+
 var drawing_points = []
 var is_drawing = false
 var recognizer = GestureRecognizer.new()
-var min_score_limitation = 0.72
+var min_score_limitation = 0.35
 var current_gesture_id = 0 
 var stroke_timer = Timer.new()
 var recognize_timer = Timer.new()
@@ -47,6 +51,27 @@ func _input(event):
 			timer_skipped = false
 			stroke_timer.stop()
 			drawing_points.append([])
+			
+			var outline := Line2D.new()
+			outline.round_precision = 16
+			outline.width = 22
+			outline.default_color = Color.BLACK
+			outline.joint_mode = Line2D.LINE_JOINT_ROUND
+			outline.begin_cap_mode = Line2D.LINE_CAP_ROUND
+			outline.end_cap_mode = Line2D.LINE_CAP_ROUND
+			add_child(outline)
+			out_lines.append(outline)
+			
+			var line := Line2D.new()
+			line.round_precision = 16
+			line.width = 10
+			line.default_color = Color(1.5, 3.0, 6.0)
+			line.joint_mode = Line2D.LINE_JOINT_ROUND
+			line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+			line.end_cap_mode = Line2D.LINE_CAP_ROUND
+			add_child(line)
+			stroke_lines.append(line)
+			
 			queue_redraw()
 		elif event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			if not timer_skipped:
@@ -76,30 +101,37 @@ func _input(event):
 			var local_position = get_local_mouse_position()
 			var new_point = recognizer.Point.new(local_position.x, local_position.y, current_gesture_id)
 			drawing_points[-1].append(new_point)
+			#########################################################
+			stroke_lines[-1].add_point(local_position)
+			out_lines[-1].add_point(local_position)
+			
 			queue_redraw()
 	
 func _draw():
-	for stroke in drawing_points:
-		var line := Line2D.new()
-		line.width = 10
-		line.default_color = Color(1.5, 3.0, 6.0)
-		line.joint_mode = Line2D.LINE_JOINT_ROUND
-		line.begin_cap_mode = Line2D.LINE_CAP_ROUND
-		line.end_cap_mode = Line2D.LINE_CAP_ROUND
-		
-		var outline := Line2D.new()
-		outline.width = 22
-		outline.default_color = Color.BLACK
-		outline.joint_mode = Line2D.LINE_JOINT_ROUND
-		outline.begin_cap_mode = Line2D.LINE_CAP_ROUND
-		outline.end_cap_mode = Line2D.LINE_CAP_ROUND
-		add_child(outline)
-		add_child(line)
-		for i in range(stroke.size() - 1):
-			var start_point = Vector2(stroke[i].x, stroke[i].y)
-			var end_point = Vector2(stroke[i + 1].x, stroke[i + 1].y)
-			line.add_point(start_point)
-			outline.add_point(start_point)
+	pass
+	#for stroke in drawing_points:
+		#var line := Line2D.new()
+		#line.round_precision = 16
+		#line.width = 10
+		#line.default_color = Color(1.5, 3.0, 6.0)
+		#line.joint_mode = Line2D.LINE_JOINT_ROUND
+		#line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+		#line.end_cap_mode = Line2D.LINE_CAP_ROUND
+		#
+		#var outline := Line2D.new()
+		#outline.width = 22
+		#outline.default_color = Color.BLACK
+		#outline.joint_mode = Line2D.LINE_JOINT_ROUND
+		#outline.begin_cap_mode = Line2D.LINE_CAP_ROUND
+		#outline.end_cap_mode = Line2D.LINE_CAP_ROUND
+		#add_child(outline)
+		#add_child(line)
+		#for i in range(stroke.size() - 1):
+			#var start_point = Vector2(stroke[i].x, stroke[i].y)
+			#var end_point = Vector2(stroke[i + 1].x, stroke[i + 1].y)
+			#
+			#line.add_point(start_point)
+			#outline.add_point(start_point)
 
 func _on_stroke_timeout():
 	_recognize_gesture()
@@ -164,4 +196,12 @@ func _score():
 func remove_lines():
 	for child in get_children():
 		if child is Line2D:
+			var step = max(1, child.points.size() / 8)
+			#for point in child.points:
+			for i in range(0, child.points.size(), step):
+				var global_point = child.to_global(child.points[i])
+				var particle = cast_effect.instantiate()
+				particle.position = global_point
+				particle.emitting = true
+				get_tree().root.add_child(particle)
 			child.queue_free()

@@ -4,7 +4,9 @@ extends Node2D
 
 var spells = {
 	"jump": preload("res://spells/jump_spell.tres"),
-	"boost": preload("res://spells/boost_spell.tres")
+	"boost": preload("res://spells/boost_spell.tres"),
+	"shrink": preload("res://spells/shrink_spell.tres"),
+	"shrink_toggle" : preload("res://spells/shrink_toggle_spell.tres")
 }
 
 @onready var spell_sequence: Array

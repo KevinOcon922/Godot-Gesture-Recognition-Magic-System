@@ -9,9 +9,8 @@ class_name SpellResource
 @export var is_buff: bool = false
 
 @export var current_power = 1
-@export var current_duration = 1
 @export var duration_boost = 1
-@export var max_duration = 1
+@export var max_duration = 0
 @export var current_mod = "NULL"
 
 func update(delta: float) -> void:
@@ -23,7 +22,6 @@ func update(delta: float) -> void:
 			ready_to_cast = true
 			current_power = 1
 			duration_boost = 1
-			current_duration = max_duration
 			current_mod = "NULL"
 
 func cast(caster: CharacterBody2D, location: Vector2, spell_power: float, duration_boost: float, extra_mod: String):

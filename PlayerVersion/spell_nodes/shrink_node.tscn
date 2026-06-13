@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dkvdv773wmqt0"]
+
+[ext_resource type="Script" uid="uid://nigijgmnxni7" path="res://scripts/ShrinkNode.gd" id="1_trqty"]
+
+[node name="ShrinkNode" type="Node2D" unique_id=188034757]
+script = ExtResource("1_trqty")
+
+[node name="Timer" type="Timer" parent="." unique_id=975084093]
+wait_time = 4.0

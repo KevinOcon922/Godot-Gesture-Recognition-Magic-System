@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ShrinkToggleSpell" format=3 uid="uid://u66bxl86rkwj"]
+
+[ext_resource type="Script" uid="uid://cbwyfnu0t46qh" path="res://PlayerVersion/spells/shrink_toggle_spell.gd" id="1_tbin1"]
+
+[resource]
+script = ExtResource("1_tbin1")
+metadata/_custom_type_script = "uid://b1lwfpkemhhls"

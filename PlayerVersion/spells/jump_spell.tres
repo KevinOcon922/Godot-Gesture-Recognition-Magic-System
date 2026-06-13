@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="JumpSpell" format=3 uid="uid://b1ldq7hdnnshg"]
+[gd_resource type="Resource" script_class="JumpSpell" format=3 uid="uid://l42bfgweqll6"]
 
-[ext_resource type="Script" uid="uid://cgu5g2nmsbruy" path="res://spells/jump_spell.gd" id="1_t5g48"]
+[ext_resource type="Script" uid="uid://cghhi1620yudj" path="res://PlayerVersion/spells/jump_spell.gd" id="1_hk5lb"]
 
 [resource]
-script = ExtResource("1_t5g48")
+script = ExtResource("1_hk5lb")
 spell_name = "jump"
 max_cooldown = 3.0
 metadata/_custom_type_script = "uid://cgu5g2nmsbruy"

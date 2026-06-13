@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="BoostSpell" format=3 uid="uid://c0j82tqlswvrs"]
+[gd_resource type="Resource" script_class="BoostSpell" format=3 uid="uid://drihrjk1ta68j"]
 
-[ext_resource type="Script" uid="uid://cyvxjgh1cerq" path="res://spells/boost_spell.gd" id="1_ef468"]
+[ext_resource type="Script" uid="uid://cgsjdf61o5wvj" path="res://PlayerVersion/spells/boost_spell.gd" id="1_lcesv"]
 
 [resource]
-script = ExtResource("1_ef468")
+script = ExtResource("1_lcesv")
 spell_name = "boost"
 is_castable = false
 is_buff = true

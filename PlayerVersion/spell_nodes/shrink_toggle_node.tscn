@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cu8utyy583wk1"]
+
+[ext_resource type="Script" uid="uid://deiq06ok7wari" path="res://shrink_toggle_node.gd" id="1_jwmwf"]
+
+[node name="shrink_toggle_node" type="Node2D" unique_id=450175486]
+script = ExtResource("1_jwmwf")
