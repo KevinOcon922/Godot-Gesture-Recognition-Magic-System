@@ -26,6 +26,8 @@ var _is_recognizing: bool = false
 
 var timer_skipped = false
 
+var can_cast = false
+
 @onready var caster: CharacterBody2D = $"../Player"
 
 signal spell_cast(spell_name: String, caster: CharacterBody2D, position: Vector2)
@@ -51,6 +53,7 @@ func _input(event):
 			timer_skipped = false
 			stroke_timer.stop()
 			drawing_points.append([])
+			can_cast = true
 			
 			var outline := Line2D.new()
 			outline.round_precision = 16
@@ -79,17 +82,19 @@ func _input(event):
 				current_gesture_id += 1
 				stroke_timer.start()
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			timer_skipped = true
-			_recognize_gesture()
-			is_drawing = false
-			#_is_recognizing = false
-			stroke_timer.stop()
-			#result_label.text = ""
-			#current_gesture_id = 0
-			#if _recognition_thread and _recognition_thread.is_active():
-			#	_recognition_thread.wait_to_finish() 
-			#	_recognition_thread = null
-			#queue_redraw()
+			if can_cast:
+				can_cast = false
+				_recognize_gesture()
+				timer_skipped = true
+				is_drawing = false
+	#
+				stroke_timer.stop()
+				
+				if _is_recognizing == false:
+					drawing_points.clear()
+					queue_redraw()
+					current_gesture_id = 0
+
 	elif event is InputEventMouseMotion and is_drawing:
 		#if drawing_area.get_rect().has_point(drawing_area.get_local_mouse_position()):
 			if _get_flattened_points().size() >= max_points:
@@ -107,32 +112,6 @@ func _input(event):
 			
 			queue_redraw()
 	
-func _draw():
-	pass
-	#for stroke in drawing_points:
-		#var line := Line2D.new()
-		#line.round_precision = 16
-		#line.width = 10
-		#line.default_color = Color(1.5, 3.0, 6.0)
-		#line.joint_mode = Line2D.LINE_JOINT_ROUND
-		#line.begin_cap_mode = Line2D.LINE_CAP_ROUND
-		#line.end_cap_mode = Line2D.LINE_CAP_ROUND
-		#
-		#var outline := Line2D.new()
-		#outline.width = 22
-		#outline.default_color = Color.BLACK
-		#outline.joint_mode = Line2D.LINE_JOINT_ROUND
-		#outline.begin_cap_mode = Line2D.LINE_CAP_ROUND
-		#outline.end_cap_mode = Line2D.LINE_CAP_ROUND
-		#add_child(outline)
-		#add_child(line)
-		#for i in range(stroke.size() - 1):
-			#var start_point = Vector2(stroke[i].x, stroke[i].y)
-			#var end_point = Vector2(stroke[i + 1].x, stroke[i + 1].y)
-			#
-			#line.add_point(start_point)
-			#outline.add_point(start_point)
-
 func _on_stroke_timeout():
 	_recognize_gesture()
 	if _is_recognizing == false:
